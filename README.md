@@ -2,6 +2,36 @@
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
+<!-- code_chunk_output -->
+
+- [Mục lục](#mục-lục)
+  - [Yêu cầu](#yêu-cầu)
+  - [Cài đặt docker engine](#cài-đặt-docker-engine)
+  - [Chạy mainflux](#chạy-mainflux)
+  - [Test API](#test-api)
+    - [Cài đặt Postman](#cài-đặt-postman)
+    - [Import API](#import-api)
+    - [Setup collections](#setup-collections)
+    - [Tạo thing mới](#tạo-thing-mới)
+    - [Tạo channel mới](#tạo-channel-mới)
+    - [Liên kết things với channel](#liên-kết-things-với-channel)
+    - [Đẩy data vào channel thông qua http](#đẩy-data-vào-channel-thông-qua-http)
+    - [Truy xuất giá trị đã gửi thông qua reader](#truy-xuất-giá-trị-đã-gửi-thông-qua-reader)
+  - [Hiển thị data trên realtime chart](#hiển-thị-data-trên-realtime-chart)
+    - [Requirement](#requirement)
+    - [Giải thích đơn giản về NATS và protobuf](#giải-thích-đơn-giản-về-nats-và-protobuf)
+    - [Mô hình triển khai](#mô-hình-triển-khai)
+    - [Bắt gói tin từ NATS](#bắt-gói-tin-từ-nats)
+    - [Decode gói tin, chuẩn hoá theo định dạng của reader và gửi lên mqtt broker riêng](#decode-gói-tin-chuẩn-hoá-theo-định-dạng-của-reader-và-gửi-lên-mqtt-broker-riêng)
+    - [Mô phỏng devices sử dụng node-red (cơ bản)](#mô-phỏng-devices-sử-dụng-node-red-cơ-bản)
+    - [Hiển thị dữ liệu realtime với ReactJS](#hiển-thị-dữ-liệu-realtime-với-reactjs)
+  - [Các thông tin khác](#các-thông-tin-khác)
+    - [Mô phỏng Ubuntu trên window](#mô-phỏng-ubuntu-trên-window)
+    - [How to use this repo?](#how-to-use-this-repo)
+    - [Nếu phát hiện lỗi hay thắc mắc](#nếu-phát-hiện-lỗi-hay-thắc-mắc)
+
+<!-- /code_chunk_output -->
+
 ## Yêu cầu
 
 - Chạy trên ubuntu server/desktop (> 20.04). Lưu ý là mainflux không chạy được trên wsl, [xem thêm](#mô-phỏng-ubuntu-trên-window)
