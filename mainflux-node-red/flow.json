@@ -1,0 +1,156 @@
+[
+  {
+    "id": "be0b257f965a51d0",
+    "type": "tab",
+    "label": "Flow 1",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "eb48d79fd824964b",
+    "type": "mqtt out",
+    "z": "be0b257f965a51d0",
+    "name": "",
+    "topic": "",
+    "qos": "2",
+    "retain": "false",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "49f4f141e308f113",
+    "x": 970,
+    "y": 320,
+    "wires": []
+  },
+  {
+    "id": "db25422fcbaf0b99",
+    "type": "function",
+    "z": "be0b257f965a51d0",
+    "name": "Connect to Mainflux",
+    "func": "return {\n    action: \"connect\",\n    broker: {\n        broker: \"172.23.87.193\",\n        port: 1883,\n        username: \"2be92c8b-8a35-4153-8496-a3009828d242\",\n        password: \"ea125243-920d-4473-bcfb-d5ccb3f57b58\"\n    },\n}",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 680,
+    "y": 240,
+    "wires": [["eb48d79fd824964b"]]
+  },
+  {
+    "id": "32708f2c756e3683",
+    "type": "inject",
+    "z": "be0b257f965a51d0",
+    "name": "Connect",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 420,
+    "y": 240,
+    "wires": [["db25422fcbaf0b99"]]
+  },
+  {
+    "id": "c6bca53718d315ae",
+    "type": "function",
+    "z": "be0b257f965a51d0",
+    "name": "function 1",
+    "func": "const channelId = \"8e2dbd11-6898-4d44-aecb-4a3227b7af1f\"\nreturn {\n    payload: [\n        {        \n            bt: Number(Number(Date.now() / 1000).toFixed(2)),\n            n: \"voltage\",\n            v: Math.random()*10\n        },\n        {\n            n: \"current\",\n            v: Math.random()*2\n        }\n    ],\n    topic: `channels/${channelId}/messages`\n};",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 640,
+    "y": 400,
+    "wires": [["eb48d79fd824964b"]]
+  },
+  {
+    "id": "2b9e05087688a841",
+    "type": "inject",
+    "z": "be0b257f965a51d0",
+    "name": "publish",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "1 ",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 320,
+    "y": 400,
+    "wires": [["c6bca53718d315ae"]]
+  },
+  {
+    "id": "548561ae45883d3b",
+    "type": "inject",
+    "z": "be0b257f965a51d0",
+    "name": "disconnect",
+    "props": [
+      {
+        "p": "action",
+        "v": "disconnect",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 640,
+    "y": 320,
+    "wires": [["eb48d79fd824964b"]]
+  },
+  {
+    "id": "49f4f141e308f113",
+    "type": "mqtt-broker",
+    "name": "",
+    "broker": "localhost",
+    "port": "1883",
+    "clientid": "",
+    "autoConnect": false,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": "",
+    "willMsg": {},
+    "userProps": "",
+    "sessionExpiry": ""
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "name": "mainflux-guide-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mqtt": "^4.3.7",
+    "nats": "^2.9.1",
+    "protobufjs": "^7.1.2"
+  }
+}
